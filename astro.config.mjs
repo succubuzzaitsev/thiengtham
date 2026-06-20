@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://thiengtham-development.pages.dev",
+  site: "https://thiengtham.com",
   output: "static",
   build: {
     format: "directory",

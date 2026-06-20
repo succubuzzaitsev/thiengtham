@@ -19,15 +19,15 @@ const isTH = lang === "th";
     <meta name="keywords" content={isTH ? "รับเหมาซ่อมคอนโด,รับเหมาซ่อมบ้าน,ซ่อมคอนโด,รีโนเวทคอนโด,ช่างซ่อมคอนโด,รับเหมาก่อสร้างกรุงเทพฯ" : "condo renovation Bangkok,home renovation Bangkok,condo repair,home repair Bangkok"} />
     <meta name="google-site-verification" content="ใส่โค้ด verify จาก Search Console" />
     <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="canonical" href={`https://thiengtham-development.pages.dev${Astro.url.pathname}`} />
-    <link rel="alternate" hreflang="th" href={`https://thiengtham-development.pages.dev${isTH ? Astro.url.pathname : '/'}`} />
-    <link rel="alternate" hreflang="en" href={`https://thiengtham-development.pages.dev${isTH ? '/en' : Astro.url.pathname}`} />
-    <link rel="alternate" hreflang="x-default" href="https://thiengtham-development.pages.dev/" />
+    <link rel="canonical" href={`https://thiengtham.com${Astro.url.pathname}`} />
+    <link rel="alternate" hreflang="th" href={`https://thiengtham.com${isTH ? Astro.url.pathname : '/'}`} />
+    <link rel="alternate" hreflang="en" href={`https://thiengtham.com${isTH ? '/en' : Astro.url.pathname}`} />
+    <link rel="alternate" hreflang="x-default" href="https://thiengtham.com/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://thiengtham-development.pages.dev${Astro.url.pathname}`} />
-    <meta property="og:image" content="https://thiengtham-development.pages.dev/logo.png" />
+    <meta property="og:url" content={`https://thiengtham.com${Astro.url.pathname}`} />
+    <meta property="og:image" content="https://thiengtham.com/logo.png" />
     <meta property="og:locale" content={isTH ? "th_TH" : "en_US"} />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -35,12 +35,12 @@ const isTH = lang === "th";
       "@type": "LocalBusiness",
       "name": isTH ? "เที่ยงทำ ดีเวลลอปเม้นท์" : "Thiengtham Development",
       "description": isTH ? "รับเหมาซ่อมคอนโด บ้าน ทั่วกรุงเทพฯ โดยช่างมืออาชีพ" : "Bangkok Condo & Home Renovation by professional craftsmen",
-      "url": "https://thiengtham-development.pages.dev",
+      "url": "https://thiengtham.com",
       "telephone": "+6620698888",
       "email": "contact@thiengtham.dev",
       "areaServed": ["Bangkok", "Nonthaburi", "Pathum Thani", "Samut Prakan"],
       "priceRange": "$$",
-      "image": "https://thiengtham-development.pages.dev/logo.png",
+      "image": "https://thiengtham.com/logo.png",
       "foundingDate": "2015",
       "numberOfEmployees": { "@type": "QuantitativeValue", "value": "5" },
       "founder": { "@type": "Person", "name": isTH ? "เที่ยงทำ" : "Thiengtham" },
