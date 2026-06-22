@@ -1,4 +1,7 @@
 ---
+import "../styles/tokens.css";
+import "../styles/global.css";
+
 export interface Props {
   title: string;
   description: string;
@@ -17,7 +20,7 @@ const isTH = lang === "th";
     <title>{title} | เที่ยงทำ ดีเวลลอปเม้นท์</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={isTH ? "รับเหมาซ่อมคอนโด,รับเหมาซ่อมบ้าน,ซ่อมคอนโด,รีโนเวทคอนโด,ช่างซ่อมคอนโด,รับเหมาก่อสร้างกรุงเทพฯ" : "condo renovation Bangkok,home renovation Bangkok,condo repair,home repair Bangkok"} />
-    <meta name="google-site-verification" content="ใส่โค้ด verify จาก Search Console" />
+    
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="canonical" href={`https://thiengtham.com${Astro.url.pathname}`} />
     <link rel="alternate" hreflang="th" href={`https://thiengtham.com${isTH ? Astro.url.pathname : '/'}`} />
@@ -54,8 +57,7 @@ const isTH = lang === "th";
         "https://www.facebook.com/ThiengTham.DEV"
       ]
     })} />
-    <link rel="stylesheet" href="/src/styles/tokens.css" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
+
     <script>
       const saved = localStorage.getItem("theme");
       if (saved) document.documentElement.setAttribute("data-theme", saved);

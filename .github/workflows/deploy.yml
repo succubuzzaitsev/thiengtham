@@ -18,6 +18,8 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm run build
+        env:
+          PUBLIC_FB_ACCESS_TOKEN: ${{ secrets.PUBLIC_FB_ACCESS_TOKEN }}
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
