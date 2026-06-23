@@ -6,23 +6,44 @@ export interface Props {
 const { locale } = Astro.props;
 const t = locale;
 
+interface FBMedia {
+  src: string;
+}
+
+interface FBAttachment {
+  media?: { image?: FBMedia };
+  subattachments?: { data?: { media: { image: FBMedia } }[] };
+}
+
 interface FBPost {
-  message?: string;
-  full_picture?: string;
   permalink_url?: string;
+  attachments?: { data?: FBAttachment[] };
 }
 
 const FB_TOKEN = import.meta.env.PUBLIC_FB_ACCESS_TOKEN;
-let posts: FBPost[] = [];
+let images: { src: string; url: string }[] = [];
 
 if (FB_TOKEN) {
   try {
     const res = await fetch(
-      `https://graph.facebook.com/v22.0/ThiengTham.DEV/posts?fields=message,full_picture,permalink_url&limit=6&access_token=${FB_TOKEN}`
+      `https://graph.facebook.com/v22.0/ThiengTham.DEV/posts?fields=message,permalink_url,attachments{media,subattachments{media}}&limit=1&access_token=${FB_TOKEN}`
     );
     if (res.ok) {
       const data = await res.json();
-      posts = (data.data || []).filter((p: FBPost) => p.full_picture).slice(0, 6);
+      const post: FBPost | undefined = (data.data || [])[0];
+      if (post?.attachments?.data) {
+        const link = post.permalink_url || "#";
+        const allImages: string[] = [];
+        for (const att of post.attachments.data) {
+          if (att.media?.image?.src) allImages.push(att.media.image.src);
+          if (att.subattachments?.data) {
+            for (const sub of att.subattachments.data) {
+              if (sub.media?.image?.src) allImages.push(sub.media.image.src);
+            }
+          }
+        }
+        images = [...new Set(allImages)].slice(0, 6).map((src) => ({ src, url: link }));
+      }
     }
   } catch (e) {
     console.error("Facebook fetch failed:", e);
@@ -37,18 +58,18 @@ if (FB_TOKEN) {
       <div class="section-divider"></div>
     </div>
     <div class="portfolio-masonry reveal" id="portfolioGrid">
-      {posts.length > 0
-        ? posts.map(
-            (p) => (
+      {images.length > 0
+        ? images.map(
+            (img) => (
               <a
-                href={p.permalink_url}
+                href={img.url}
                 target="_blank"
                 rel="noopener"
                 class="portfolio-item"
               >
                 <img
-                  src={p.full_picture}
-                  alt={p.message || ""}
+                  src={img.src}
+                  alt=""
                   style="width:100%;height:auto;display:block;"
                   loading="lazy"
                 />
