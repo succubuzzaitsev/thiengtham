@@ -49,6 +49,24 @@ const service = th.services.items[0];
         </div>
       </div>
     </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-title-wrapper reveal">
+          <h2 class="section-title">บริการอื่นๆ ของเรา</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="other-services">
+          <a href="/services/fix-crack" class="other-service-link">
+            <span class="other-service-title">ซ่อมรอยร้าวคอนโด</span>
+            <span class="other-service-arrow">→</span>
+          </a>
+          <a href="/services/painting" class="other-service-link">
+            <span class="other-service-title">ทาสีคอนโดภายในและภายนอก</span>
+            <span class="other-service-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
     <section class="section" id="contact-cta">
       <div class="container">
         <div class="cta-block reveal">
@@ -188,6 +206,40 @@ const service = th.services.items[0];
   }
   .cta-channels .btn-cta {
     align-self: center;
+  }
+  .other-services {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .other-service-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    text-decoration: none;
+    transition: all 0.3s var(--ease-out-expo);
+  }
+  :global([data-theme="dark"]) .other-service-link {
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .other-service-link:hover {
+    border-color: var(--sun);
+    transform: translateY(-2px);
+  }
+  .other-service-title {
+    font-family: var(--font-display-thai);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .other-service-arrow {
+    color: var(--sun);
+    font-size: 1.1rem;
   }
   @media (max-width: 768px) {
     .benefits-grid {
