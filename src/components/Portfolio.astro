@@ -33,16 +33,24 @@ if (FB_TOKEN) {
       const post: FBPost | undefined = (data.data || [])[0];
       if (post?.attachments?.data) {
         const link = post.permalink_url || "#";
+        const seen = new Set<string>();
         const allImages: string[] = [];
         for (const att of post.attachments.data) {
-          if (att.media?.image?.src) allImages.push(att.media.image.src);
           if (att.subattachments?.data) {
             for (const sub of att.subattachments.data) {
-              if (sub.media?.image?.src) allImages.push(sub.media.image.src);
+              const src = sub.media?.image?.src;
+              if (src) {
+                const key = src.split("?")[0].split("_n.jpg")[0] + "_n.jpg";
+                if (!seen.has(key)) { seen.add(key); allImages.push(src); }
+              }
             }
+          } else if (att.media?.image?.src) {
+            const src = att.media.image.src;
+            const key = src.split("?")[0].split("_n.jpg")[0] + "_n.jpg";
+            if (!seen.has(key)) { seen.add(key); allImages.push(src); }
           }
         }
-        images = [...new Set(allImages)].slice(0, 6).map((src) => ({ src, url: link }));
+        images = allImages.slice(0, 6).map((src) => ({ src, url: link }));
       }
     }
   } catch (e) {

@@ -13,29 +13,49 @@ const t = locale;
       <h2 class="section-title">{t.process.title}</h2>
       <div class="section-divider"></div>
     </div>
-  </div>
-  <div class="process-steps">
-    {t.process.steps.map((step: any, i: number) => (
-      <div class={`step reveal reveal-delay-${i + 1}`}>
-        <div class="step-num">{step.num}</div>
-        <div class="step-content">
-          <h3 class="step-title">{step.title}</h3>
-          <p class="step-desc">{step.desc}</p>
-        </div>
-        {i < t.process.steps.length - 1 && <div class="step-line"></div>}
+    <div class="process-layout">
+      <div class="process-steps">
+        {t.process.steps.map((step: any, i: number) => (
+          <div class={`step reveal reveal-delay-${i + 1}`}>
+            <div class="step-num">{step.num}</div>
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-desc">{step.desc}</p>
+            </div>
+            {i < t.process.steps.length - 1 && <div class="step-line"></div>}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+      <div class="process-fb reveal">
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FThiengTham.DEV&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+          width="100%"
+          height="500"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
 </section>
 
 <style>
+  .process-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
   .process-steps {
     display: flex;
     flex-direction: column;
     gap: 0;
     max-width: 720px;
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0;
   }
   .step {
     display: flex;
@@ -74,7 +94,18 @@ const t = locale;
     font-size: 0.95rem;
     line-height: 1.7;
   }
+  .process-fb iframe {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    margin: 0 auto;
+  }
   @media (max-width: 768px) {
+    .process-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
     .step {
       gap: var(--space-md);
       padding: var(--space-md) 0;
@@ -82,6 +113,9 @@ const t = locale;
     .step-num {
       font-size: 1.5rem;
       min-width: 36px;
+    }
+    .process-fb iframe {
+      max-width: 100%;
     }
   }
 </style>
